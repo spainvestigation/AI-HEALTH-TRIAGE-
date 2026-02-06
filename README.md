@@ -1,49 +1,36 @@
-# AI Health Triage
+# HealthTriage AI
 
-## Documentation and Setup Instructions
+## Project Overview
 
-### Overview
-This project provides an AI-powered tool for health triage, helping users assess their health conditions and manage their symptoms effectively.
+HealthTriage AI is an innovative artificial intelligence solution designed to assist in basic health triage, providing valuable preliminary insights and recommendations based on user input. The project aims to streamline the process of assessing health concerns using intelligent algorithms.
+
+## Features
+- Symptom checker: Users can input their symptoms and receive potential causes and recommendations for next steps.
+- Integrated knowledge base: The AI is powered by a rich repository of medical information that is continuously updated.
+- User-friendly interface: Designed to be easily navigable for users of all tech proficiency levels.
+
+## Getting Started
 
 ### Prerequisites
-1. **Python 3.7 or higher**
-   - Make sure you have Python installed on your system.
-   - You can download it from [python.org](https://www.python.org/downloads/).
-
-2. **Virtual Environment (optional but recommended)**
-   - It's recommended to create a virtual environment to manage dependencies.
-   - You can create a virtual environment with the following command:
-     ```bash
-     python -m venv venv
-     ```
-   - Activate it:
-     - On Windows:
-       ```bash
-       venv\Scripts\activate
-       ```
-     - On macOS/Linux:
-       ```bash
-       source venv/bin/activate
-       ```
+- Python 3.8+
+- Required libraries (to be listed)
 
 ### Installation
-To install the required dependencies, run:
-```bash
-pip install -r requirements.txt
-```
-
-### Running the Application
-To start the application, use:
-```bash
-python app.py
-```
+1. Clone the repository: `git clone https://github.com/spainvestigation/AI-HEALTH-TRIAGE-.git`
+2. Navigate to the project directory: `cd AI-HEALTH-TRIAGE-`
+3. Install dependencies: `pip install -r requirements.txt`
 
 ### Usage
-- Access the application through your web browser at `http://localhost:5000`.
-- Follow the on-screen instructions to navigate through the triage process.
+- Instructions on how to run the application, including command-line inputs and expected outputs.
 
-### Contributing
-Contributions are welcome! Please submit a pull request for any changes you wish to propose.
+## Contributing
 
-### License
-This project is licensed under the MIT License. See the LICENSE file for details.
+We welcome contributions to improve this project! Please follow our contribution guidelines outlined in CONTRIBUTING.md.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Thanks to all contributors and supporters of the HealthTriage AI project!
