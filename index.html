@@ -2,116 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HealthTriage AI</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        h1 { color: #4CAF50; }
-        .container { width: 80%; margin: auto; overflow: hidden; }
-        .header { padding: 20px; background: #333; color: #fff; text-align: center; }
-        .footer { padding: 10px; background: #333; color: #fff; text-align: center; position: fixed; left: 0; bottom: 0; width: 100%; }
-        .form-group { margin: 15px 0; }
-        .form-group label { display: block; margin-bottom: 5px; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; }
-    </style>
+    <title>AI Health Triage | Home</title>
 </head>
 <body>
-    <div class="header">
-        <h1>HealthTriage AI</h1>
-    </div>
-    <div class="container">
-        <h2>Symptom Assessment</h2>
-        <form id="symptom-assessment-form">
-            <div class="form-group">
-                <label for="symptoms">Enter Symptoms:</label>
-                <textarea id="symptoms" required></textarea>
-            </div>
-            <button type="submit">Assess Symptoms</button>
-        </form>
-        <h2>AI Chat</h2>
-        <div id="chat-container">
-            <textarea id="chat-input" placeholder="Ask me anything..." rows="3"></textarea>
-            <button id="send-chat">Send</button>
-        </div>
-        <h2>Profile Management</h2>
-        <form id="profile-form">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" required />
-            </div>
-            <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" id="age" required />
-            </div>
-            <button type="submit">Save Profile</button>
-        </form>
-        <h2>Appointments</h2>
-        <div id="appointments"></div>
-        <button id="add-appointment">Add Appointment</button>
-        <h2>Medications</h2>
-        <div id="medications"></div>
-        <button id="add-medication">Add Medication</button>
-        <h2>Medical History</h2>
-        <div id="medical-history"></div>
-    </div>
-    <div class="footer">
-        <p>&copy; 2026 HealthTriage AI</p>
-    </div>
-    <script>
-        // Local storage keys
-        const profileKey = 'profile';
-        const appointmentsKey = 'appointments';
-        const medicationsKey = 'medications';
-        const medicalHistoryKey = 'medicalHistory';
-
-        // Function to save profile
-        document.getElementById('profile-form').onsubmit = function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const age = document.getElementById('age').value;
-            localStorage.setItem(profileKey, JSON.stringify({ name, age }));
-            alert('Profile saved!');
-        };
-
-        // Function to handle appending items to local storage
-        function addItem(key, item) {
-            const items = JSON.parse(localStorage.getItem(key)) || [];
-            items.push(item);
-            localStorage.setItem(key, JSON.stringify(items));
-        }
-
-        // Add appointment
-        document.getElementById('add-appointment').onclick = function() {
-            const appointment = prompt('Enter appointment details:');
-            if (appointment) addItem(appointmentsKey, appointment);
-        };
-
-        // Display appointments
-        function displayAppointments() {
-            const appointments = JSON.parse(localStorage.getItem(appointmentsKey)) || [];
-            document.getElementById('appointments').innerHTML = appointments.join('<br/>');
-        }
-        displayAppointments();
-
-        // Add medication
-        document.getElementById('add-medication').onclick = function() {
-            const medication = prompt('Enter medication details:');
-            if (medication) addItem(medicationsKey, medication);
-        };
-
-        // Display medications
-        function displayMedications() {
-            const medications = JSON.parse(localStorage.getItem(medicationsKey)) || [];
-            document.getElementById('medications').innerHTML = medications.join('<br/>');
-        }
-        displayMedications();
-
-        // Chat functionality (mock)
-        document.getElementById('send-chat').onclick = function() {
-            const input = document.getElementById('chat-input').value;
-            alert('Chat sent: ' + input);
-        };
-    </script>
+    <h1>Welcome to AI Health Triage</h1>
+    <p>Current Date and Time (UTC): 2026-02-06 13:21:58</p>
+    <p>Current User's Login: spainvestigation</p>
 </body>
 </html>
