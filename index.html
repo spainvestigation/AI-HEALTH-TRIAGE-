@@ -1,13 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Health Triage | Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthTriage AI</title>
+  <style>
+    body { margin:0; font-family:'Segoe UI',Roboto,sans-serif; background:#121212; color:#f0f0f0;}
+    header { text-align:center; padding:80px 20px; background:linear-gradient(135deg,#1e1e1e,#2a2a2a);}
+    header h1 { font-size:2.5rem; color:#00bfff;}
+    header p { max-width:600px; margin:20px auto; color:#ccc;}
+    .cta-buttons button { margin:10px; padding:12px 24px; border:none; border-radius:6px; cursor:pointer;}
+    .start { background:#00bfff; color:#fff;}
+    .learn { background:#00ff88; color:#000;}
+    .assessment, .chatbox, .features { padding:60px 20px; text-align:center;}
+    .assessment input { width:80%; max-width:500px; padding:10px; margin:10px 0; border-radius:6px; border:none;}
+    .categories { display:flex; flex-wrap:wrap; justify-content:center; margin-top:30px;}
+    .category { flex:1 1 200px; margin:10px; padding:20px; border-radius:8px; font-weight:bold; color:#fff;}
+    .emergency{background:#ff3333;} .urgent{background:#ff8800;} .routine{background:#3399ff;} .selfcare{background:#33cc66;}
+    .chat-log { max-width:600px; margin:20px auto; background:#2a2a2a; border-radius:8px; padding:20px; height:300px; overflow-y:auto;}
+    .user-msg{color:#3399ff; margin:10px 0;} .ai-msg{color:#33cc66; margin:10px 0;}
+    .chat-input { display:flex; justify-content:center; margin-top:20px;}
+    .chat-input input { flex:1; max-width:400px; padding:10px; border-radius:6px; border:none;}
+    .chat-input button { margin-left:10px; padding:10px 20px; border:none; border-radius:6px; background:#00bfff; color:#fff; cursor:pointer;}
+    .feature-cards { display:flex; flex-wrap:wrap; justify-content:center; margin-top:30px;}
+    .card { flex:1 1 200px; margin:15px; padding:20px; background:#2a2a2a; border-radius:8px;}
+    .disclaimer { padding:40px 20px; background:#1e1e1e; text-align:center; font-size:0.9rem; color:#aaa;}
+    footer { padding:20px; text-align:center; background:#000; color:#666; font-size:0.85rem;}
+    @media(max-width:768px){.categories,.feature-cards{flex-direction:column;}}
+  </style>
 </head>
 <body>
-    <h1>Welcome to AI Health Triage</h1>
-    <p>Current Date and Time (UTC): 2026-02-06 13:21:58</p>
-    <p>Current User's Login: spainvestigation</p>
+
+<!-- Hero Section -->
+<header>
+  <h1>Know When to Seek Medical Care</h1>
+  <p>HealthTriage AI helps you assess symptoms and vital signs with an AI‑powered triage system.</p>
+  <div class="cta-buttons">
+    <button class="start">Start Free Assessment</button>
+    <button class="learn">Learn How It Works</button>
+  </div>
+</header>
+
+<!-- Symptom Assessment -->
+<section class="assessment">
+  <h2>Symptom Assessment Tool</h2>
+  <input id="symptoms" type="text" placeholder="Enter your symptoms">
+  <input id="vitals" type="text" placeholder="Enter vital signs (e.g., BP, HR)">
+  <button onclick="assessSymptoms()">Assess</button>
+  <div id="result" style="margin-top:20px; font-size:1.2rem;"></div>
+</section>
+
+<!-- AI Chatbox -->
+<section class="chatbox">
+  <h2>AI Health Assistant</h2>
+  <div class="chat-log" id="chatLog"></div>
+  <div class="chat-input">
+    <input id="chatInput" type="text" placeholder="Ask a health question...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <h2>Features</h2>
+  <div class="feature-cards">
+    <div class="card">AI‑Powered Analysis</div>
+    <div class="card">Secure & Private</div>
+    <div class="card">Instant Results</div>
+    <div class="card">Personalized Care</div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="disclaimer">
+  <p><strong>Medical Disclaimer:</strong> HealthTriage AI is for informational purposes only and does not provide medical advice. Always consult a healthcare professional.</p>
+</section>
+
+<!-- Footer -->
+<footer>© 2026 HealthTriage AI. All rights reserved.</footer>
+
+<script>
+  // Symptom Assessment Logic
+  function assessSymptoms() {
+    const symptoms = document.getElementById('symptoms').value.toLowerCase();
+    const vitals = document.getElementById('vitals').value.toLowerCase();
+    let category = '';
+    if (symptoms.includes('chest pain') || vitals.includes('low bp') || vitals.includes('high hr')) {
+      category = '<div class="category emergency">Emergency: Immediate medical attention needed</div>';
+    } else if (symptoms.includes('fever') || symptoms.includes('infection')) {
+      category = '<div class="category urgent">Urgent: See a doctor within 24 hours</div>';
+    } else if (symptoms.includes('cough') || symptoms.includes('headache')) {
+      category = '<div class="category routine">Routine: Schedule an appointment soon</div>';
+    } else {
+      category = '<div class="category selfcare">Self‑Care: Manage at home with guidance</div>';
+    }
+    document.getElementById('result').innerHTML = category;
+  }
+
+  // Chatbox Logic
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    addMessage('user', text);
+    input.value = '';
+    setTimeout(() => {
+      const reply = generateAIResponse(text);
+      addMessage('ai', reply);
+    }, 800);
+  }
+
+  function addMessage(sender, text) {
+    const chatLog = document.getElementById('chatLog');
+    const div = document.createElement('div');
+    div.className = sender === 'user' ? 'user-msg' : 'ai-msg';
+    div.textContent = (sender === 'user' ? 'You: ' : 'AI: ') + text;
+    chatLog.appendChild(div);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  // Simple AI response simulation
+  function generateAIResponse(text) {
+    if (text.toLowerCase().includes('fever')) {
+      return "A fever can indicate infection. Stay hydrated and monitor your temperature.";
+    } else if (text.toLowerCase().includes('headache')) {
+      return "Headaches are common. Rest, hydration, and over-the-counter remedies may help.";
+    } else if (text.toLowerCase().includes('cough')) {
+      return "A cough may be mild or linked to infection. If persistent, consult a doctor.";
+    } else {
+      return "I recommend monitoring your symptoms and consulting a healthcare provider if they worsen.";
+    }
+  }
+</script>
+
 </body>
 </html>
